@@ -18,11 +18,21 @@ The model consists of:
 
 ```mermaid
 graph TD
-    A[Input Data (Candidate Features)] -->|Shared Representation| B(Feature Extractor)
+    A[Input Data<br>Candidate Features] -->|Shared Representation| B(Feature Extractor)
     B -->|Fair Features| C[Hiring Decision Model]
-    B -->|Reversed Gradient| D(Adversary - Sensitive Attribute Predictor)
-    C -->|Predictions| E[Hiring Decision (Fair)]
-    D -->|Predicts Gender?| F[Bias Signal for Backpropagation]
+    B -->|Reversed Gradient| D(Adversary<br>Sensitive Attribute Predictor)
+    C -->|Predictions| E[Hiring Decision<br>Fair]
+    D -->|Predicts Gender?| F[Bias Signal<br>for Backpropagation]
+    
+    classDef primary fill:#d0e0ff,stroke:#3080e0,stroke-width:2px
+    classDef processor fill:#ffe0d0,stroke:#e08030,stroke-width:2px
+    classDef output fill:#d0ffe0,stroke:#30e080,stroke-width:2px
+    classDef feedback fill:#ffd0e0,stroke:#e03080,stroke-width:2px
+    
+    class A,F primary
+    class B,D processor
+    class C output
+    class E output
 ```
 
 ## 📊 Evaluating Fairness and Performance
