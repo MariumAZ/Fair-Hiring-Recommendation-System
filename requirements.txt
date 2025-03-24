@@ -5,6 +5,4 @@ matplotlib
 black
 isort
 flake8
-pytest
-pytest-cov
-pytest-mock
+jupyter

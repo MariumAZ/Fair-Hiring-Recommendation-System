@@ -8,22 +8,17 @@ def generate_synthetic_data(test_size=0.3,
     # Generate synthetic candidate features (e.g., 20 features)
     X, y = make_classification(n_samples=2000, n_features=20, n_informative=10,
                                n_redundant=5, n_clusters_per_class=2, random_state=random_state)
-    # Simulate a sensitive attribute (e.g., gender) using the first feature
+    # Simulate a sensitive attribute (e.g., gender) 
+    # using the first feature
     sensitive = (X[:, 0] > 0).astype(int)
     
     # Split the dataset
     X_train, X_test, y_train, y_test, s_train, s_test = train_test_split(
         X, y, sensitive, test_size=test_size, random_state=random_state)
 
-    # Convert to PyTorch tensors
-    X_train = torch.tensor(X_train, dtype=torch.float32)
-    y_train = torch.tensor(y_train, dtype=torch.float32).unsqueeze(1)
-    s_train = torch.tensor(s_train, dtype=torch.float32).unsqueeze(1)
-    X_test = torch.tensor(X_test, dtype=torch.float32)
-    y_test = torch.tensor(y_test, dtype=torch.float32).unsqueeze(1)
-    s_test = torch.tensor(s_test, dtype=torch.float32).unsqueeze(1)
-    
+
     return (X_train, y_train, s_train), (X_test, y_test, s_test)
+
 
 if __name__ == "__main__":
     (X_train, y_train, s_train), (X_test, y_test, s_test) = generate_synthetic_data()
